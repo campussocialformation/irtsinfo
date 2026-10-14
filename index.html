@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mon passeport numérique</title>
+  <meta name="description" content="Passeport de compétences numériques pour les étudiants en formation de travail social.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Lien d'évitement : permet aux personnes naviguant au clavier d'aller directement au contenu -->
+  <a class="lien-evitement" href="#contenu">Aller au contenu principal</a>
+
+  <!-- ===== EN-TÊTE ===== -->
+  <header class="entete">
+    <div class="conteneur">
+      <!-- Le nom de l'établissement et le titre sont remplis automatiquement depuis la configuration de script.js -->
+      <p class="entete__etablissement" id="nom-etablissement">IRTS</p>
+      <h1 id="titre-passeport">Mon passeport numérique</h1>
+      <p class="entete__intro">
+        Validez pas à pas les compétences informatiques dont vous aurez besoin pendant votre formation.
+        Prenez votre temps : chaque étape est expliquée simplement.
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== CONTENU PRINCIPAL ===== -->
+  <main id="contenu" class="conteneur">
+
+    <!-- Message affiché uniquement si le navigateur ne peut pas enregistrer la progression -->
+    <p id="alerte-stockage" class="alerte" role="alert" hidden>
+      Attention : votre navigateur ne permet pas d'enregistrer votre progression
+      (navigation privée ou réglages de confidentialité). Vos validations seront perdues
+      à la fermeture de la page.
+    </p>
+
+    <!-- Bloc de progression globale -->
+    <section class="carte progression" aria-labelledby="titre-progression">
+      <h2 id="titre-progression">Ma progression</h2>
+
+      <p id="texte-progression" class="progression__texte" aria-live="polite"></p>
+
+      <div class="barre" role="progressbar" id="barre-progression"
+           aria-labelledby="titre-progression" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="barre__remplissage" id="barre-remplissage"></div>
+      </div>
+
+      <p id="message-felicitations" class="felicitations" hidden>
+        Bravo ! Vous avez validé toutes les compétences de votre passeport numérique.
+      </p>
+
+      <div class="champ">
+        <label for="nom-etudiant">
+          Mon prénom et mon nom
+          <span class="facultatif">(facultatif, utile pour imprimer le passeport)</span>
+        </label>
+        <input id="nom-etudiant" type="text" autocomplete="name" maxlength="80">
+      </div>
+
+      <div class="progression__actions">
+        <button type="button" id="btn-imprimer" class="bouton bouton--secondaire">
+          Imprimer mon passeport
+        </button>
+        <button type="button" id="btn-reinitialiser" class="bouton bouton--discret">
+          Tout réinitialiser
+        </button>
+      </div>
+    </section>
+
+    <!-- Liste des compétences (construite automatiquement par script.js) -->
+    <section class="competences-zone" aria-labelledby="titre-competences">
+      <h2 id="titre-competences">Les compétences à valider</h2>
+      <p class="aide">
+        Cliquez sur une compétence pour afficher les consignes.
+        Quand vous l'avez réalisée, cliquez sur <strong>« Je valide cette compétence »</strong>.
+      </p>
+
+      <!-- Ligne visible uniquement à l'impression -->
+      <p class="impression-seule" id="impression-nom"></p>
+
+      <ol id="liste-competences" class="competences"></ol>
+    </section>
+
+  </main>
+
+  <!-- ===== PIED DE PAGE ===== -->
+  <footer class="pied">
+    <div class="conteneur">
+      <p>
+        Votre progression est enregistrée uniquement sur <strong>cet appareil</strong> et dans
+        <strong>ce navigateur</strong>. Si vous changez d'ordinateur ou de téléphone, elle ne vous suivra pas.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

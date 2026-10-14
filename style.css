@@ -1,0 +1,597 @@
+/* =========================================================
+   PASSEPORT NUMÉRIQUE — style.css
+   Feuille de style : couleurs, mise en page, adaptation
+   mobile/tablette et impression.
+   Pour changer les couleurs, modifiez seulement les
+   variables de la section 1.
+   ========================================================= */
+
+
+/* ---------- 1. COULEURS ET RÉGLAGES GÉNÉRAUX ---------- */
+:root {
+  --couleur-fond: #f4f6f8;
+  --couleur-surface: #ffffff;
+  --couleur-texte: #1c2530;
+  --couleur-texte-doux: #4a5563;
+  --couleur-principale: #1f4e6e;        /* bleu ardoise : en-tête, boutons */
+  --couleur-principale-fonce: #163a52;
+  --couleur-principale-clair: #e6eef4;
+  --couleur-valide: #1d6b3f;            /* vert : compétences validées */
+  --couleur-valide-clair: #e5f3ea;
+  --couleur-bordure: #d3dae1;
+  --couleur-focus: #ffcc33;             /* anneau jaune de navigation clavier */
+  --couleur-alerte-fond: #fff4e0;
+  --couleur-alerte-texte: #6b3a00;
+
+  --rayon: 10px;
+  --ombre: 0 1px 3px rgba(20, 30, 40, 0.08), 0 4px 12px rgba(20, 30, 40, 0.05);
+  --largeur-max: 860px;
+}
+
+
+/* ---------- 2. BASE ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--couleur-texte);
+  background: var(--couleur-fond);
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  margin-top: 0;
+}
+
+a {
+  color: var(--couleur-principale);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--couleur-principale-fonce);
+}
+
+code {
+  font-family: ui-monospace, Consolas, "Courier New", monospace;
+  background: var(--couleur-principale-clair);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.95em;
+  word-break: break-word;
+}
+
+/* Contour bien visible pour la navigation au clavier */
+:focus-visible {
+  outline: 3px solid var(--couleur-texte);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--couleur-focus);
+}
+
+/* Texte lu par les lecteurs d'écran mais invisible à l'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.conteneur {
+  width: 100%;
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+
+/* ---------- 3. LIEN D'ÉVITEMENT ---------- */
+.lien-evitement {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  background: var(--couleur-focus);
+  color: var(--couleur-texte);
+  border-radius: 0 0 var(--rayon) var(--rayon);
+}
+
+.lien-evitement:focus {
+  top: 0;
+}
+
+
+/* ---------- 4. EN-TÊTE ---------- */
+.entete {
+  background: var(--couleur-principale);
+  color: #ffffff;
+  padding: 2rem 0 2.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.entete__etablissement {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.entete h1 {
+  margin-bottom: 0.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+}
+
+.entete__intro {
+  margin: 0;
+  max-width: 60ch;
+}
+
+
+/* ---------- 5. CARTES ET BLOC DE PROGRESSION ---------- */
+.carte {
+  background: var(--couleur-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 1.25rem 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.progression h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.progression__texte {
+  margin: 0 0 0.6rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.barre {
+  height: 14px;
+  background: var(--couleur-principale-clair);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barre__remplissage {
+  height: 100%;
+  width: 0;
+  background: var(--couleur-valide);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.felicitations {
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  background: var(--couleur-valide-clair);
+  color: var(--couleur-valide);
+  border-left: 5px solid var(--couleur-valide);
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.champ {
+  margin-top: 1.25rem;
+}
+
+.champ label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.facultatif {
+  font-weight: 400;
+  color: var(--couleur-texte-doux);
+  font-size: 0.92rem;
+}
+
+.champ input {
+  width: 100%;
+  max-width: 420px;
+  font: inherit;
+  padding: 0.55rem 0.75rem;
+  border: 2px solid var(--couleur-bordure);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--couleur-texte);
+}
+
+.champ input:focus-visible {
+  border-color: var(--couleur-principale);
+}
+
+.progression__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.alerte {
+  background: var(--couleur-alerte-fond);
+  color: var(--couleur-alerte-texte);
+  border-left: 5px solid #c77700;
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  margin: 0 0 1.5rem;
+}
+
+
+/* ---------- 6. BOUTONS ---------- */
+.bouton {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0.65rem 1.1rem;
+  min-height: 44px;              /* zone de clic confortable sur mobile */
+  border: 2px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.bouton--principal {
+  background: var(--couleur-principale);
+  color: #ffffff;
+}
+
+.bouton--principal:hover {
+  background: var(--couleur-principale-fonce);
+}
+
+.bouton--valide {
+  background: var(--couleur-valide-clair);
+  color: var(--couleur-valide);
+  border-color: var(--couleur-valide);
+}
+
+.bouton--valide:hover {
+  background: #d3ebdc;
+}
+
+.bouton--secondaire {
+  background: #ffffff;
+  color: var(--couleur-principale);
+  border-color: var(--couleur-principale);
+}
+
+.bouton--secondaire:hover {
+  background: var(--couleur-principale-clair);
+}
+
+.bouton--discret {
+  background: transparent;
+  color: var(--couleur-texte-doux);
+  border-color: var(--couleur-bordure);
+}
+
+.bouton--discret:hover {
+  color: var(--couleur-texte);
+  border-color: var(--couleur-texte-doux);
+}
+
+
+/* ---------- 7. LISTE DES COMPÉTENCES ---------- */
+.competences-zone h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.aide {
+  margin: 0 0 1.25rem;
+  color: var(--couleur-texte-doux);
+}
+
+.competences {
+  list-style: none;
+  margin: 0 0 2.5rem;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.competence {
+  background: var(--couleur-surface);
+  border: 1px solid var(--couleur-bordure);
+  border-left: 6px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  overflow: hidden;
+}
+
+.competence.est-validee {
+  border-left-color: var(--couleur-valide);
+}
+
+.competence__titre {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Le titre entier est un bouton : on clique dessus pour ouvrir les consignes */
+.competence__bouton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  color: var(--couleur-texte);
+  cursor: pointer;
+}
+
+.competence__bouton:hover {
+  background: #f8fafb;
+}
+
+.competence__bouton:focus-visible {
+  outline-offset: -4px;
+  box-shadow: inset 0 0 0 7px var(--couleur-focus);
+}
+
+.competence__numero {
+  flex: 0 0 auto;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--couleur-principale-clair);
+  color: var(--couleur-principale);
+  font-weight: 700;
+}
+
+.est-validee .competence__numero {
+  background: var(--couleur-valide);
+  color: #ffffff;
+}
+
+.competence__libelle {
+  flex: 1 1 auto;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.competence__statut {
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: #eef1f4;
+  color: var(--couleur-texte-doux);
+  white-space: nowrap;
+}
+
+.est-validee .competence__statut {
+  background: var(--couleur-valide-clair);
+  color: var(--couleur-valide);
+}
+
+/* Petite flèche qui pivote à l'ouverture */
+.competence__chevron {
+  flex: 0 0 auto;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-right: 3px solid var(--couleur-texte-doux);
+  border-bottom: 3px solid var(--couleur-texte-doux);
+  transform: rotate(45deg);
+  margin: 0 0.3rem 0.3rem 0.2rem;
+  transition: transform 0.2s ease;
+}
+
+.competence__bouton[aria-expanded="true"] .competence__chevron {
+  transform: rotate(-135deg);
+  margin-bottom: -0.2rem;
+}
+
+/* Panneau des consignes */
+.competence__panneau {
+  padding: 0.25rem 1.25rem 1.4rem;
+  border-top: 1px solid var(--couleur-bordure);
+}
+
+.objectif {
+  margin: 1rem 0;
+  padding: 0.7rem 1rem;
+  background: var(--couleur-principale-clair);
+  border-radius: 6px;
+}
+
+.etapes {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.etapes li {
+  margin-bottom: 0.6rem;
+  padding-left: 0.25rem;
+}
+
+.etapes li::marker {
+  font-weight: 700;
+  color: var(--couleur-principale);
+}
+
+.cahier {
+  margin: 0.5rem 0 0;
+  padding: 0.75rem 1rem 0.75rem 2rem;
+  background: #f8fafb;
+  border: 1px dashed var(--couleur-bordure);
+  border-radius: 6px;
+}
+
+.cahier li {
+  margin-bottom: 0.3rem;
+}
+
+.astuce {
+  margin: 0 0 1.25rem;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--couleur-principale);
+  background: #fafbfc;
+  border-radius: 0 6px 6px 0;
+}
+
+.competence__validation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.date-validation {
+  margin: 0;
+  color: var(--couleur-valide);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Valeurs encore à compléter dans la configuration (visible pour le formateur) */
+.a-completer {
+  background: #fff1b8;
+  color: #5c3d00;
+  border: 1px dashed #b38600;
+  padding: 0 0.3em;
+  border-radius: 4px;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.92em;
+}
+
+
+/* ---------- 8. PIED DE PAGE ---------- */
+.pied {
+  border-top: 1px solid var(--couleur-bordure);
+  background: var(--couleur-surface);
+  color: var(--couleur-texte-doux);
+  font-size: 0.95rem;
+  padding: 1.25rem 0;
+}
+
+.pied p {
+  margin: 0;
+}
+
+.impression-seule {
+  display: none;
+}
+
+
+/* ---------- 9. PETITS ÉCRANS (téléphones) ---------- */
+@media (max-width: 560px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .entete {
+    padding: 1.5rem 0 1.75rem;
+  }
+
+  .competence__bouton {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .competence__libelle {
+    flex-basis: calc(100% - 5rem);
+  }
+
+  /* Le badge « À faire / Validée » passe sous le titre */
+  .competence__statut {
+    margin-left: 2.8rem;
+  }
+
+  .competence__panneau {
+    padding: 0.25rem 1rem 1.2rem;
+  }
+
+  .progression__actions .bouton,
+  .competence__validation .bouton {
+    width: 100%;
+  }
+}
+
+
+/* ---------- 10. ANIMATIONS RÉDUITES ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+
+/* ---------- 11. IMPRESSION DU PASSEPORT ---------- */
+@media print {
+  body {
+    background: #ffffff;
+    font-size: 11pt;
+  }
+
+  .lien-evitement,
+  .progression__actions,
+  .champ,
+  .aide,
+  .alerte,
+  .competence__chevron,
+  .competence__panneau,
+  .pied {
+    display: none !important;
+  }
+
+  .entete {
+    background: none;
+    color: #000000;
+    padding: 0;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #000000;
+  }
+
+  .impression-seule {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .carte,
+  .competence {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .barre {
+    border: 1px solid #000000;
+  }
+
+  .barre__remplissage,
+  .est-validee .competence__numero {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
