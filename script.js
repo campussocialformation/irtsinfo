@@ -207,10 +207,9 @@ function listeCahierDesCharges() {
 
 const CLE_STOCKAGE = "passeport-numerique-progression";
 
-// État courant : compétences validées (id → date ISO) et nom de l'étudiant
+// État courant : compétences validées (id → date ISO)
 const etat = {
   validations: {},
-  nom: "",
 };
 
 let stockageDisponible = true;
@@ -221,7 +220,6 @@ function chargerProgression() {
     if (brut) {
       const donnees = JSON.parse(brut);
       etat.validations = donnees.validations || {};
-      etat.nom = donnees.nom || "";
     }
   } catch (erreur) {
     stockageDisponible = false;
@@ -330,15 +328,6 @@ function mettreAJourProgression() {
   document.getElementById("message-felicitations").hidden = validees !== total || total === 0;
 }
 
-// Met à jour la ligne « Passeport de … » visible à l'impression
-function mettreAJourNomImpression() {
-  const ligne = document.getElementById("impression-nom");
-  const date = new Date().toLocaleDateString("fr-FR");
-  ligne.textContent = etat.nom
-    ? `Passeport de : ${etat.nom} — imprimé le ${date}`
-    : `Imprimé le ${date}`;
-}
-
 
 /* ---------- 3.5 Actions de l'utilisateur ---------- */
 
@@ -368,16 +357,13 @@ function reinitialiser() {
   if (!confirmation) return;
 
   etat.validations = {};
-  etat.nom = "";
   try {
     localStorage.removeItem(CLE_STOCKAGE);
   } catch (erreur) {
     /* stockage indisponible : rien à effacer */
   }
-  document.getElementById("nom-etudiant").value = "";
   construireListe();
   mettreAJourProgression();
-  mettreAJourNomImpression();
 }
 
 
@@ -397,16 +383,6 @@ function demarrer() {
   construireListe();
   mettreAJourProgression();
 
-  // Champ « prénom et nom »
-  const champNom = document.getElementById("nom-etudiant");
-  champNom.value = etat.nom;
-  mettreAJourNomImpression();
-  champNom.addEventListener("input", () => {
-    etat.nom = champNom.value.trim();
-    enregistrerProgression();
-    mettreAJourNomImpression();
-  });
-
   // Un seul écouteur pour toute la liste (ouvrir/fermer et valider)
   document.getElementById("liste-competences").addEventListener("click", (evenement) => {
     const boutonTitre = evenement.target.closest(".competence__bouton");
@@ -421,10 +397,6 @@ function demarrer() {
   });
 
   document.getElementById("btn-reinitialiser").addEventListener("click", reinitialiser);
-  document.getElementById("btn-imprimer").addEventListener("click", () => {
-    mettreAJourNomImpression();
-    window.print();
-  });
 }
 
 document.addEventListener("DOMContentLoaded", demarrer);
