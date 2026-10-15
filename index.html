@@ -50,18 +50,7 @@
         Bravo ! Vous avez validé toutes les compétences de votre passeport numérique.
       </p>
 
-      <div class="champ">
-        <label for="nom-etudiant">
-          Mon prénom et mon nom
-          <span class="facultatif">(facultatif, utile pour imprimer le passeport)</span>
-        </label>
-        <input id="nom-etudiant" type="text" autocomplete="name" maxlength="80">
-      </div>
-
       <div class="progression__actions">
-        <button type="button" id="btn-imprimer" class="bouton bouton--secondaire">
-          Imprimer mon passeport
-        </button>
         <button type="button" id="btn-reinitialiser" class="bouton bouton--discret">
           Tout réinitialiser
         </button>
@@ -75,9 +64,6 @@
         Cliquez sur une compétence pour afficher les consignes.
         Quand vous l'avez réalisée, cliquez sur <strong>« Je valide cette compétence »</strong>.
       </p>
-
-      <!-- Ligne visible uniquement à l'impression -->
-      <p class="impression-seule" id="impression-nom"></p>
 
       <ol id="liste-competences" class="competences"></ol>
     </section>
