@@ -28,16 +28,16 @@ const CONFIG = {
   titrePasseport: "Mon passeport numérique",
 
   // Adresses des plateformes (commencez par https://)
-  urlEcampus: "[URL_ECAMPUS]",
-  urlMoodle: "[URL_MOODLE]",
-  urlPortailParmentier: "[URL_PORTAIL_PARMENTIER]",   // ex. : "https://www.office.com"
+  urlEcampus: "https://campus.irtsparmentieridf.fr/login/index.php",
+  urlMoodle: "https://inscriptions.parmentieridf.fr/faces/Login.xhtml",
+  urlPortailParmentier: "https://inscriptions.parmentieridf.fr/faces/Login.xhtml",   // ex. : "https://www.office.com"
 
   // Formateur destinataire du document de la compétence 5
-  nomFormateur: "[NOM_FORMATEUR]",
+  nomFormateur: "Laeticia ou Romain",
   mailFormateur: "[MAIL_FORMATEUR]",
 
   // À qui s'adresser en cas de problème (identifiants perdus, compte bloqué…)
-  contactAide: "[CONTACT_AIDE]",   // ex. : "le secrétariat pédagogique, bureau 12"
+  contactAide: "Romain",   // ex. : "le secrétariat pédagogique, bureau 12"
 
   // Compétence 5 : objet du mail et nom du fichier attendus
   objetMail: "Passeport numérique – Document test – Prénom NOM",
